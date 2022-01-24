@@ -135,6 +135,15 @@ const runAction = () => {
 				} ${args}`,
 				appRoot,
 			);
+			if (platform === "mac") {
+				log(`Building for arm64 Macs`)
+				run(
+				`${useNpm ? "npx --no-install" : "yarn run"} ${cmd} --${platform} --arm64 ${
+					release ? "--publish always" : ""
+				} ${args}`,
+				appRoot,
+			);
+			}
 			break;
 		} catch (err) {
 			if (i < maxAttempts - 1) {
